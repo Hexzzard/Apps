@@ -1,0 +1,114 @@
+/* Variables */
+:root {
+  --black: rgba(0, 0, 0, 1);
+  --cinder: rgba(11, 13, 23, 1);
+  --blue: rgba(19, 0, 246, 0.988);
+  --eerie-black: rgba(24, 25, 31, 1);
+  --scooter: rgba(46, 197, 206, 1);
+  --mako: rgba(71, 74, 87, 1);
+  --winter-wizard: rgba(160, 219, 255, 1);
+  --alto-3: rgba(217, 217, 217, 0.439);
+  --alto: rgba(217, 217, 217, 1);
+  --alto-2: rgba(217, 219, 225, 1);
+  --cultured-pearl: rgba(244, 245, 247, 1);
+  --white: rgba(255, 255, 255, 1);
+
+  --font-size-m: 14px;
+  --font-size-l: 16px;
+  --font-size-xl: 18px;
+  --font-size-xxl: 24px;
+  --font-size-xxxl: 48px;
+  --font-size-xxl2: 72px;
+
+  --font-family-inter: "Inter";
+  --font-family-roboto: "Roboto";
+}
+
+/* Clases */
+.inter-medium-cultured-pearl-14px {
+  color: var(--cultured-pearl);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inter-medium-eerie-black-14px {
+  color: var(--eerie-black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inter-medium-winter-wizard-14px {
+  color: var(--winter-wizard);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inter-medium-black-14px {
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inter-normal-alto-14px {
+  color: var(--cultured-pearl);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-extra-bold-black-72px{
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-xxl2);
+  font-weight: 800;
+  font-style: normal;
+}
+
+.inter-semi-bold-eerie-black-24px {
+  color: var(--eerie-black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inter-bold.eerie-black-14px {
+  color: var(--eerie-black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inter-bold-black-18px {
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inter-normal-eerie-black-16px{
+  color: var(--eerie-black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-l);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-bold-black-14px {
+  color: var(--black);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  font-style: normal;
+}
