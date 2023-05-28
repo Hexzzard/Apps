@@ -31,6 +31,8 @@
   font-size: var(--font-size-m);
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-medium-eerie-black-14px {
@@ -39,14 +41,18 @@
   font-size: var(--font-size-m);
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-medium-winter-wizard-14px {
-  color: var(--winter-wizard);
+  color: var(--white);
   font-family: var(--font-family-inter);
   font-size: var(--font-size-m);
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-medium-black-14px {
@@ -55,6 +61,8 @@
   font-size: var(--font-size-m);
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-normal-alto-14px {
@@ -63,6 +71,8 @@
   font-size: var(--font-size-m);
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-extra-bold-black-72px{
@@ -71,6 +81,8 @@
   font-size: var(--font-size-xxl2);
   font-weight: 800;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-semi-bold-eerie-black-24px {
@@ -79,6 +91,8 @@
   font-size: var(--font-size-xxl);
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-bold.eerie-black-14px {
@@ -87,6 +101,8 @@
   font-size: var(--font-size-m);
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-bold-black-18px {
@@ -95,6 +111,8 @@
   font-size: var(--font-size-xl);
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-normal-eerie-black-16px{
@@ -103,6 +121,8 @@
   font-size: var(--font-size-l);
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+
 }
 
 .inter-bold-black-14px {
@@ -111,4 +131,6 @@
   font-size: var(--font-size-m);
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
+
 }

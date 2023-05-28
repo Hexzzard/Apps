@@ -1,107 +1,61 @@
+'use client'
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import 'app/test.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import '../test.css'
+import './ensayos.css'
 
-import { Navbar } from '../components/NavbarNormal'
 import { Footer } from '../components/footer'
+import { NavbarResponsive } from '../components/NavbarResponsive'
+import { Button2 } from '../components/Button2'
 
 function App () {
-  return <Login {...loginData} />
-}
-
-export default App
-
-function Login (props) {
-  const {
-    title,
-    iconUser,
-    usuario,
-    example,
-    iconKey,
-    contrasea,
-    overlapGroup,
-    text1,
-    iconEye,
-    logoGoogleg48Dp,
-    signInWithGoogle,
-    signUp
-  } = props
-
   return (
     <div className='container-center-horizontal'>
       <div className='login screen'>
-        <Navbar />
-        <div className='overlap-group2'>
-          <h1 className='title inter-extra-bold-black-72px'>
-            {title}
-          </h1>
-          <div className='usuario'>
-            <img className='icon-user' src={iconUser} alt='icon-user' />
-            <div className='flex-col'>
-              <div className='usuario-1 inter-bold-black-18px'>
-                {usuario}
-              </div>
-              <div className='box'>
-                <div className='overlap-group' style={{ backgroundImage: `url(${overlapGroup})` }}>
-                  <div className='text-1 inter-medium-black-14px'>
-                    {example}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='contrasea'>
-            <img src={iconKey} alt='icon-key' className='icon-key' />
-            <div className='flex-col-1'>
-              <div className='contrasea-1 inter-bold-black-18px'>
-                {contrasea}
-              </div>
-              <div className='box'>
-                <div className='overlap-groupx2' style={{ backgroundImage: `url(${overlapGroup})` }}>
-                  <div className='text-1 inter-medium-black-14px'>
-                    {text1}
-                  </div>
-                  <div className='izquierda'>
-                    <img src={iconEye} alt='incon-eye' className='icon-eye' />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='right-nav'>
-            <div className='button'>
-              <div className='sign-up inter-medium-cultured-pearl-14px'>
-                {signUp}
-              </div>
-            </div>
-          </div>
-          <div className='btn_google_lighthover'>
-            <div className='official-buttons-sig'>
-              <img src={logoGoogleg48Dp} alt='logo google' className='logo-googleg-48dp' />
-              <div className='sign-in-with-google'>
-                {signInWithGoogle}
-              </div>
-            </div>
-          </div>
+        <div className='header-container'>
+          <NavbarResponsive />
         </div>
+        <form className='form2'>
+          <h2 className='form_title'>Pregunta 1</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div className='radio-option'>
+            <input type='radio' id='opcion1' name='opcion' value='A' />
+            <label htmlFor='opcion1' className='radio-labelA'>
+              <div className='radio-imageA' />
+              <span className='option-label'>Elefante guerrero siquico ancestral</span>
+            </label>
+          </div>
+          <div className='radio-option'>
+            <input type='radio' id='opcion2' name='opcion' value='B' />
+            <label htmlFor='opcion2' className='radio-labelB'>
+              <div className='radio-imageB' />
+              <span className='option-label'>Falso</span>
+            </label>
+          </div>
+          <div className='radio-option'>
+            <input type='radio' id='opcion3' name='opcion' value='C' />
+            <label htmlFor='opcion3' className='radio-labelC'>
+              <div className='radio-imageC' />
+              <span className='option-label'>Shrek</span>
+            </label>
+          </div>
+          <div className='radio-option'>
+            <input type='radio' id='opcion4' name='opcion' value='D' />
+            <label htmlFor='opcion4' className='radio-labelD'>
+              <div className='radio-imageD' />
+              <span className='option-label'>Si</span>
+            </label>
+          </div>
+          <div className='botones'>
+            <Button2 clase='button-ensayo'>Anterior</Button2>
+            <Button2 clase='button-ensayo'>Siguiente</Button2>
+          </div>
+        </form>
         <Footer />
       </div>
     </div>
   )
 }
 
-const loginData = {
-  title: 'Iniciar Sesion',
-  iconUser: '/assets/iconmonstr-user.png',
-  usuario: 'Usuario',
-  example: 'Example',
-  rectangle593: '/assets/rectangle-593.png',
-  iconKey: '/assets/iconmonstr-key.png',
-  contrasea: 'Contraseña',
-  overlapGroup: '/assets/rectangle-593.png',
-  text1: '*********',
-  iconEye: '/assets/iconmonstr-eye.png',
-  logoGoogleg48Dp: './assets/logo-googleg.png',
-  signInWithGoogle: 'Sign in with Google',
-  signUp: 'Ingresar'
-}
+export default App

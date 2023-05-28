@@ -1,15 +1,17 @@
-@import url( "https://fonts.googleapis.com/css?family=Inter:500,400,700,800|Roboto:500");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Roboto:wght@500&display=swap');
 @import "./styleguide.css";
 
 body {
   margin: 0;
 }
-a {
-  color: inherit;
-}
+
 .screen a {
   display: contents;
   text-decoration: none;
+}
+button {
+  color: black !important;
+  border: none !important;
 }
 
 .container-center-horizontal {
@@ -147,35 +149,34 @@ a {
 
 .hero-5 {
   background-color: var(--white);
-  display: flex;
-  gap: 61px;
-  height: 865px;
-  margin: 0px;
-  overflow: hidden;
   width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  padding-left: 20px;
 }
 
 .content {
-  align-items: flex-start;
-  align-self: center;
+  max-width: 540px;
+  height: 100%;
+  margin: auto;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-content: center;
+  flex-wrap: wrap;
   flex-direction: column;
-  gap: 32px;
-  height: 226px;
-  margin-left: 165px;
-  margin-top: 73px;
-  position: relative;
-  width: 540px;
+
 }
 
 .header-copy {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-  width: fit-content;
+  text-align: center; /* Centra horizontalmente el texto */
+  max-width: 100%;
 }
+
 
 .landing-page-ui-kit {
   color: var(--eerie-black);
@@ -187,39 +188,62 @@ a {
   margin-top: -1px;
   position: relative;
   white-space: nowrap;
-  width: 540px;
+  max-width: 100%;
+  text-align: center;
+  font-display: swap;
 }
 
 .lorem-ipsum-dolor-si {
   color: var(--eerie-black);
   font-family: var(--font-family-inter);
-  font-size: var(--font-size-xl);
+  font-size: 20px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 32px;
   position: relative;
   white-space: nowrap;
-  width: 540px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-align: center;
+  font-display: swap;
+}
+@media (max-width: 600px) {
+  .lorem-ipsum-dolor-si{
+    font-size: inherit;
+  }
+  .landing-page-ui-kit {
+    font-size: 40px;
+  }
+  .left-nav{
+    margin-left: 50px;
+  }
+
 }
 
 .creative-block {
-  align-items: flex-start;
   display: flex;
-  width: 674px;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  max-width: 674px;
+  /*margin: 0 auto; /* Centra horizontalmente */
+  width: 100%;
+  height: 100%;
 }
+
 .app-group {
   height: 866px;
   position: relative;
   width: 674px;
 }
+
 .black-bg {
   background-color: var(--eerie-black) ;
   height: 100%;
-  left: 64px;
-  position: absolute;
+  position: relative;
   top: 0;
-  width: 610px;
+  width: 100%;
 }
+
 .dots {
   align-items: center;
   display: flex;
@@ -232,19 +256,19 @@ a {
   width: fit-content;
 }
 
-.half-circ1e-3 {
+.half-circle-3 {
   height: 71px;
-  left: 320px;
-  position: absolute;
-  top: 794px;
   width: 72px;
+  right: 0;
+  position: absolute;
+  top: 300px;
 }
 
-.ha1f-circ1e-2 {
+.half-circle-2 {
   height: 72px;
-  left: 609px;
+  left: 350px;
   position: absolute;
-  top: 433px;
+  bottom: 0px;
   width: 65px;
 }
 
@@ -252,51 +276,89 @@ a {
   height: 72px;
   left: 36px;
   position: absolute ;
-  top: 134px;
+  top: 100px;
   width: 144px;
 }
 
 .user-1 {
-  height: 128px;
+  height: 140px;
+  width: 140px;
   left: 0;
-  object-fit: cover;
-  position: absolute ;
+  position: absolute;
   top: 262px;
-  width: 128px;
+  
+}
+.user-2 {
+  height: 180px;
+  width: 180px;
+  left: 333px;
+  position: absolute;
+  top: 140px;
+  
+}
+.user-3 {
+  height: 130px;
+  width: 130px;
+  left: 159px;
+  position: absolute;
+  top: 450px;
+  
 }
 .pattern {
-  height: 114px;
+  height: 130px;
+  width: 130px;
   left: 190px;
   position: absolute;
-  top: 534px;
-  width: 114px;
-}
-
-.user-3 {
-  height: 112px;
-  left: 159px;
-  object-fit: cover;
-  position: absolute;
-  top: 520px;
-  width: 112px;
+  top: 460px;
+  
 }
 
 .user-4 {
-  height: 152px;
+  height: 150px;
+  width: 150px;
   left: 437px;
-  object-fit: cover;
   position: absolute;
-  top: 582px;
-  width: 152px;
+  top: 380px;
+  
 }
-.user-2 {
-  height: 208px;
-  left: 333px;
-  object-fit: cover;
-  position: absolute;
-  top: 205px;
-  width: 208px;
+
+@media (max-width: 1200px) {
+  .user-4{
+    display: none;
+  }
 }
+@media (max-width: 1100px) {
+  .user-2{
+    display: none;
+  }
+}
+@media (max-width: 950px) {
+  .half-circle-2{
+    display: none;
+  }
+}
+@media (max-width: 880px) {
+  .user-3{
+    display: none;
+  }
+  .pattern{
+    display: none;
+  }
+  .user-2{
+    left: 40px;
+    position: absolute;
+    top: 500px;
+    display: block;
+  }
+}
+@media (max-width: 800px) {
+  .creative-block{
+    display: none;
+  }
+
+}
+
+
 
 .label-2 {
   color: var(--white) ;
@@ -310,6 +372,7 @@ a {
   text-align: center;
   white-space: nowrap;
   width: fit-content;
+  font-display: swap;
 }
 .row {
   align-items: center;
@@ -345,11 +408,11 @@ a {
   text-align: center;
   white-space: nowrap;
   width: 358px;
+  margin-top: 12px;
 }
 
 .login {
   align-items: center;
-  background-color: var(--white) ;
   border: 1px none;
   display: flex;
   flex-direction: column ;
@@ -471,9 +534,11 @@ a {
   padding-right: 0px;
 }
 .overlap-group3 {
-  height: 866px;
+  height: 100%;
   position: relative;
-  width: 674px;
+  width: 100%;
+  padding-left: 64px;
+
 }
 .overlap-groupx2 {
   align-items: flex-start;
@@ -509,7 +574,6 @@ a {
   margin-left: 10px;
   margin-top: 20px;
   transform: rotate(-0.37deg);
-  width: 40%;
 }
 .official-buttons-sig {
   background-color: var(--white) ;
@@ -543,6 +607,7 @@ a {
   margin-top: 4px;
   white-space: nowrap;
   width: 121px;
+  font-display: swap;
 }
 .right-nav {
   align-items: flex-start;
@@ -583,6 +648,21 @@ a {
   position: relative;
   width: 100%;
   margin: 0;
+}
+.compacto {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+  background-color: white;
+  z-index: 5;
+}
+.container-fluid {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
 .right-nav-1 {
   align-items: flex-start;
@@ -649,4 +729,15 @@ a {
   justify-content: center;
   width: 100%;
   margin-top: auto;
+}
+.settings{
+  border-radius: 10px;
+  display: flex;
+}
+.settings img{
+  height: 40px;
+  width: 40px;
+}
+a {
+  color: black !important;
 }

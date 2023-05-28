@@ -1,0 +1,341 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image: radial-gradient(#000000 0.7000000000000001px, #ffffff 0.7000000000000001px);
+  background-size: 14px 14px;
+  display: flex;
+  min-height: 100vh;
+}
+.form2{
+  background-color: #fff;
+  margin: auto;
+  width: 100%;
+  max-width: 600px;
+  padding: 3em 3em;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px -5px rgb(0 0 0 /30%);
+  text-align: justify;
+}
+.form_title{
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+.form_paragraph{
+  font-weight: 300;
+}
+.form_link{
+  font-weight: 400;
+  color:#000;
+}
+.form_container{
+  margin-top: 3em;
+  display: grid;
+  gap: 2.5em;
+}
+.form_group{
+  position: relative;
+  --color: #5757577e;
+}
+.form_input{
+  width: 100%;
+  background: none;
+  color: #706c6c;
+  font-size: 1rem;
+  padding: .6em .3em;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--color);
+  font-family: 'Roboto', sans-serif;
+}
+.form_input:focus + .form_label,
+.form_input:not(:placeholder-shown) + .form_label{
+  transform: translateY(-12px) scale(.7);
+  transform-origin: left top;
+  color: #3866f2;
+
+}
+
+.form_label{
+  color: #5757577e;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  left: 5px;
+  transform: translateY(20px);
+  transition: transform .5s, color .3s;
+}
+.form_submit{
+  background: #3866f2;
+  color: #fff;
+  font-family: 'Roboto', 'sans-serif';
+  font-weight: normal;
+  font-size: 1rem;
+  padding: .8em 0;
+  border: none;
+  border-radius: .5em;
+}
+
+.font_line{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #3866f2;
+  transform: scale(0);
+  transform: left bottom;
+  transition: transform .4s;
+}
+
+.form_input:focus ~ .form_label,
+.form_input:not(:placeholder-shown) ~ .form_label{
+  transform: scale(1);
+}
+
+
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio-labelA {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+.radio-labelB {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+.radio-labelC {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+.radio-labelD {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 100%;
+}
+.radio-imageA {
+  width: 30px;
+  height: 30px;
+  background-image: url('/assets/letra-a.png');
+  background-size: cover;
+  margin-right: 8px;
+
+}
+.radio-imageB {
+  width: 30px;
+  height: 30px;
+  background-image: url('/assets/letra-b.png');
+  background-size: cover;
+  margin-right: 8px;
+
+}
+.radio-imageC {
+  width: 30px;
+  height: 30px;
+  background-image: url('/assets/letra-c.png');
+  background-size: cover;
+  margin-right: 8px;
+
+}
+.radio-imageD {
+  width: 30px;
+  height: 30px;
+  background-image: url('/assets/letra-d.png');
+  background-size: cover;
+  margin-right: 8px;
+
+}
+
+input[type="radio"]:checked + .radio-labelA .radio-imageA {
+  background-image: url('/assets/letra-a-n.png');
+}
+
+
+input[type="radio"]:checked + .radio-labelB .radio-imageB {
+  background-image: url('/assets/letra-b-n.png');
+}
+
+
+input[type="radio"]:checked + .radio-labelC .radio-imageC {
+  background-image: url('/assets/letra-c-n.png');
+}
+
+input[type="radio"]:checked + .radio-labelD .radio-imageD {
+  background-image: url('/assets/letra-d-n.png');
+}
+
+
+.option-label {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.botones{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.button-ensayo {
+  align-items: center;
+  background-color: var(--blue);
+  border-radius: 20px;
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  width: fit-content;
+}
+
+
+.fin{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.anterior{
+  align-items: center;
+  background-color: var(--blue);
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  width: fit-content;
+}
+.siguiente{
+  align-items: center;
+  background-color: yellow;
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  position: relative;
+  width: fit-content;
+}
+.container-center-horizontal-2{
+  display: flex;
+  flex-direction : row ;
+  justify-content : center ;
+  width: 100%;
+  height: auto;
+}
+.container-comentario{
+  background-color: #fff;
+  margin: 0;
+  margin-right: 0;
+  width: 100%;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(0 0 0 /30%);
+  text-align: justify;
+  margin-bottom: 20px;
+}
+.container-comentario-2{
+  background-color: #fff;
+  margin: auto;
+  width: 100%;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(0 0 0 /30%);
+  text-align: justify;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+}
+.principal{
+  width: 100%;
+  height: 100%;
+}
+.autor{
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  padding-top: 20px;
+  font-weight: bold;
+}
+.comentario{
+  width: 100%;
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+}
+.reply{
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+.reply-input input{
+  background-color: #d9d9d9; /* Color de fondo del input */
+  border: none; /* Elimina el borde del input */
+  padding: 5px; /* Espacio interno para separar el texto del input */
+  color: #000; /* Color del texto del input */
+}
+
+.responder-comentario{
+  background-color: #d9d9d9;
+  border: none;
+  padding: 5px;
+  color: #000;
+  width: 80%;
+  height: 80%; /* Asegura que el input ocupe todo el ancho disponible */
+  box-sizing: border-box; /* Incluye el padding en el ancho total del input */
+  margin-bottom: 20px;
+}
+
+.container-reply{
+  background-color: #fff;
+  margin: auto;
+  width: 100%;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(0 0 0 /30%);
+  text-align: justify;
+  padding-bottom: 30px;
+  position: relative;
+}
+.container-reply input[type="text"] {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-top: 20px;
+  padding-left: 50px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container-reply input[type="text"]::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+.container-reply input[type="submit"] {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  background-color: #eaeaea;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+}
