@@ -1,13 +1,26 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { use } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../test.css'
 import './form.css'
 import { NavbarResponsive } from '../components/NavbarResponsive'
 import { Footer } from '../components/footer'
 
+import { UserAuth } from '../context/AuthContext'
+
 function App () {
+  const { user, googleSignIn } = UserAuth()
+  console.log(user.displayName)
+
+  const iniciarSesion = async () => {
+    try {
+      await googleSignIn()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className='container-center-horizontal'>
       <div className='login screen'>
@@ -31,7 +44,7 @@ function App () {
             <input type='submit' class='form_submit' value='Entrar' />
             <div className='form_group'>
               <p>o tambien puedes</p>
-              <div className='btn_google_lighthover'>
+              <div className='btn_google_lighthover' onClick={iniciarSesion}>
                 <div className='official-buttons-sig'>
                   <img src='./assets/logo-googleg.png' alt='logo google' className='logo-googleg-48dp' />
                   <div className='sign-in-with-google'>
