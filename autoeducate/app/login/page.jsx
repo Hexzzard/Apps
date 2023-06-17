@@ -1,6 +1,5 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
-import React, { use } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../test.css'
 import './form.css'
@@ -11,7 +10,6 @@ import { UserAuth } from '../context/AuthContext'
 
 function App () {
   const { user, googleSignIn } = UserAuth()
-  console.log(user.displayName)
 
   const iniciarSesion = async () => {
     try {

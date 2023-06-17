@@ -1,0 +1,14 @@
+principales:
+backend del foro 
+backend de las preguntas de ensayo 
+registro de usuarios 
+conexion con base de datos
+
+Secundarias:
+arreglar responsividad 
+proteger rutas
+
+Bugs:
+arreglar bug del css 
+ver por que se ejecuta 4 veces 
+eliminar los errores raros de la consola 
