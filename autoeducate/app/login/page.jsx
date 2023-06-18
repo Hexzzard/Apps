@@ -7,13 +7,17 @@ import { NavbarResponsive } from '../components/NavbarResponsive'
 import { Footer } from '../components/footer'
 
 import { UserAuth } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 function App () {
+  const navigate = useNavigate()
   const { user, googleSignIn } = UserAuth()
 
   const iniciarSesion = async () => {
     try {
       await googleSignIn()
+      navigate('/')
+      window.location.reload()
     } catch (error) {
       console.log(error)
     }

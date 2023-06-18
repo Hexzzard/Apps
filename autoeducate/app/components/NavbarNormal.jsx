@@ -1,7 +1,11 @@
+'use client'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { HeaderMenuDefault } from './HeaderMenuDefault'
 import { Button } from './Button'
 import { UserAuth } from '../context/AuthContext'
+
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 export function NavbarNormal () {
   const { user, logOut } = UserAuth()
@@ -12,6 +16,29 @@ export function NavbarNormal () {
       console.log(error)
     }
   }
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    const auth = getAuth()
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Si hay un usuario autenticado, actualiza el estado con el nombre de usuario
+        setCurrentUser(user.displayName)
+        console.log(user.displayName)
+      } else {
+        // Si no hay un usuario autenticado, establece el estado a null
+        setCurrentUser(null)
+      }
+    })
+
+    return () => {
+      // Limpia la suscripción cuando el componente se desmonte
+      unsubscribe()
+    }
+  }, [])
+
   return (
     <div className='header-2'>
       <div className='left-nav'>
