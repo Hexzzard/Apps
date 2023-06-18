@@ -1,6 +1,6 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
-import React,  from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../test.css'
 import './form.css'
@@ -11,21 +11,9 @@ import { NavbarResponsive } from '../components/NavbarResponsive'
 import { updateProfile, createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { auth, firestore } from '../api/firebase.config'
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { UserAuth } from '../context/AuthContext'
 
 function App () {
-  const [session, loading] = useSession()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!loading && session) {
-      router.replace('/')
-    }
-  }, [loading, session, router])
-  const navigate = useNavigate()
   async function registrarUsuario (email, password, nombre) {
     const infoUsuario = await createUserWithEmailAndPassword(
       auth,
@@ -38,10 +26,10 @@ function App () {
     await updateProfile(user, {
       displayName: nombre
     })
-    navigate('/')
-    window.location.reload()
     const docuRef = doc(firestore, `Usuarios/${infoUsuario.user.uid}`)
-    setDoc(docuRef, { email, nombre, id: infoUsuario.user.uid })
+    await setDoc(docuRef, { email, nombre, id: infoUsuario.user.uid })
+    console.log(docuRef)
+    window.location.href = '/'
   }
 
   function submitHandler (e) {
@@ -57,42 +45,58 @@ function App () {
       registrarUsuario(email, password, name)
     }
   }
+
   return (
     <div className='container-center-horizontal'>
       <div className='login screen'>
         <div className='header-container'>
           <NavbarResponsive />
         </div>
-        <form class='form' onSubmit={submitHandler}>
-          <h2 class='form_title'>Registrate</h2>
+        <form className='form' onSubmit={submitHandler}>
+          <h2 className='form_title'>Registrate</h2>
           <div className='form_container'>
             <div className='form_group'>
-              <input type='text' id='name' class='form_input' placeholder=' ' />
-              <label for='name' class='form_label'>Nombre de usuario</label>
-              <span class='form_line' />
+              <input type='text' id='name' className='form_input' placeholder=' ' />
+              <label htmlFor='name' className='form_label'>Nombre de usuario</label>
+              <span className='form_line' />
             </div>
             <div className='form_group'>
-              <input type='text' id='email' class='form_input' placeholder=' ' />
-              <label for='name' class='form_label'>email</label>
-              <span class='form_line' />
+              <input type='text' id='email' className='form_input' placeholder=' ' />
+              <label htmlFor='name' className='form_label'>email</label>
+              <span className='form_line' />
             </div>
             <div className='form_group'>
-              <input type='password' id='password' class='form_input' placeholder=' ' />
-              <label for='contraseña' class='form_label'>Contraseña</label>
-              <span class='form_line' />
+              <input type='password' id='password' className='form_input' placeholder=' ' />
+              <label htmlFor='contraseña' className='form_label'>Contraseña</label>
+              <span className='form_line' />
             </div>
             <div className='form_group'>
-              <input type='password' id='confirmar' class='form_input' placeholder=' ' />
-              <label for='contraseña' class='form_label'>Confirma tu contraseña</label>
-              <span class='form_line' />
+              <input type='password' id='confirmar' className='form_input' placeholder=' ' />
+              <label htmlFor='contraseña' className='form_label'>Confirma tu contraseña</label>
+              <span className='form_line' />
             </div>
-            <input type='submit' class='form_submit' value='Registrate' />
+            <input type='submit' className='form_submit' value='Registrate' />
           </div>
         </form>
         <Footer />
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps () {
+  // Aquí puedes realizar tus verificaciones de autenticación
+  const { user } = UserAuth() // Verificar si el usuario está autenticado
+  console.log(user)
+  if (user) {
+    // Si el usuario no está autenticado, redirigir a una página de inicio de sesión
+    return {
+      redirect: {
+        destination: '',
+        permanent: false
+      }
+    }
+  }
 }
 
 export default App

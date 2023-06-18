@@ -12,11 +12,13 @@ export function NavbarNormal () {
   const cerrarSesion = async () => {
     try {
       await logOut()
+      
     } catch (error) {
       console.log(error)
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
@@ -24,17 +26,13 @@ export function NavbarNormal () {
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Si hay un usuario autenticado, actualiza el estado con el nombre de usuario
         setCurrentUser(user.displayName)
-        console.log(user.displayName)
       } else {
-        // Si no hay un usuario autenticado, establece el estado a null
         setCurrentUser(null)
       }
     })
 
     return () => {
-      // Limpia la suscripción cuando el componente se desmonte
       unsubscribe()
     }
   }, [])
