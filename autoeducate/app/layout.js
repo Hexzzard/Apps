@@ -1,5 +1,6 @@
 'use client'
 import { AuthContextProvider } from './context/AuthContext'
+import { ReloadContextProvider } from './context/ReloadContext'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export const metadata = {
@@ -11,9 +12,11 @@ export default function RootLayout ({ children }) {
     <html lang='en'>
       <body>
         <AuthContextProvider>
-          <Router>
-            {children}
-          </Router>
+          <ReloadContextProvider>
+            <Router>
+              {children}
+            </Router>
+          </ReloadContextProvider>
         </AuthContextProvider>
       </body>
     </html>

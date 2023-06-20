@@ -1,0 +1,16 @@
+.textarea-auto-resizable {
+  min-height: 50px; /* Altura mínima inicial */
+  min-width: calc(100% - 20px);
+  margin: 10px;
+  resize: none; /* Desactiva la capacidad de redimensionar */
+  overflow: hidden; /* Oculta el desbordamiento del contenido */
+  font-size: 16px; /* Tamaño de fuente por defecto */
+  font-family: Arial, sans-serif; /* Fuente por defecto */
+  padding: 8px; /* Espaciado interno */
+  box-sizing: border-box; /* Incluye el padding en el tamaño total del textarea */
+  border: none;
+}
+
+.textarea-auto-resizable:focus {
+  outline: none; /* Elimina el contorno al enfocar el textarea */
+}

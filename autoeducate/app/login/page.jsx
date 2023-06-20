@@ -12,14 +12,13 @@ import { auth } from '../api/firebase.config'
 import { useNavigate } from 'react-router-dom'
 
 function App () {
-  const { user, googleSignIn } = UserAuth()
+  const { googleSignIn } = UserAuth()
   const navigate = useNavigate()
 
   const iniciarSesion = async () => {
     try {
       await googleSignIn()
       navigate('/')
-
     } catch (error) {
       console.log(error)
     }

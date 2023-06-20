@@ -12,7 +12,6 @@ export function NavbarNormal () {
   const cerrarSesion = async () => {
     try {
       await logOut()
-      
     } catch (error) {
       console.log(error)
     }
