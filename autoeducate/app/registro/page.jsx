@@ -11,7 +11,6 @@ import { NavbarResponsive } from '../components/NavbarResponsive'
 import { updateProfile, createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { auth, firestore } from '../api/firebase.config'
-import { UserAuth } from '../context/AuthContext'
 
 function App () {
   async function registrarUsuario (email, password, nombre) {
@@ -82,21 +81,6 @@ function App () {
       </div>
     </div>
   )
-}
-
-export async function getServerSideProps () {
-  // Aquí puedes realizar tus verificaciones de autenticación
-  const { user } = UserAuth() // Verificar si el usuario está autenticado
-  console.log(user)
-  if (user) {
-    // Si el usuario no está autenticado, redirigir a una página de inicio de sesión
-    return {
-      redirect: {
-        destination: '',
-        permanent: false
-      }
-    }
-  }
 }
 
 export default App

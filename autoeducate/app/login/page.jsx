@@ -32,7 +32,8 @@ function App () {
 
     try {
       signInWithEmailAndPassword(auth, email, password)
-      window.location.href = '/'
+      navigate('/')
+      window.location.reload()
     } catch (error) {
       console.log(error)
     }

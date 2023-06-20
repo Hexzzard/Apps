@@ -9,36 +9,44 @@ import { Footer } from '../components/footer'
 import { NavbarResponsive } from '../components/NavbarResponsive'
 import { Button2 } from '../components/Button2'
 import { Pregunta } from '../components/preguntas'
+import AlertModal from '../components/AlertModal'
+
 import { UserAuth } from '../context/AuthContext'
-import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
+
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { firestore } from '../api/firebase.config'
 
 function App () {
   const { user } = UserAuth()
   const [dataPreguntas, setPreguntas] = useState([])
   const [dataCorrectas, setCorrectas] = useState(0)
+  const [showAlert, setShowAlert] = useState(false)
+  const [reload, setReload] = useState(true)
 
   useEffect(() => {
     const obtenerPreguntas = async () => {
-      const db = doc(firestore, 'Ensayos', 'H1xrTzJTtqHLCuFwgJzE')
-      const documentoSnapshot = await getDoc(db)
-      try {
-        const datosDocumento = documentoSnapshot.data().Preguntas
-        console.log(datosDocumento)
-        const preguntas = []
-        for (const referencia of datosDocumento) {
-          const pregunta = await getDoc(referencia)
-          preguntas.push(pregunta.data())
+      if (reload) {
+        const db = doc(firestore, 'Ensayos', 'H1xrTzJTtqHLCuFwgJzE')
+        const documentoSnapshot = await getDoc(db)
+        try {
+          const datosDocumento = documentoSnapshot.data().Preguntas
+          const preguntas = []
+          for (const referencia of datosDocumento) {
+            const pregunta = await getDoc(referencia)
+            preguntas.push(pregunta.data())
+          }
+          setPreguntas(preguntas)
+        } catch (error) {
+          console.log('No se ha podido ubicar el Ensayo')
+          console.log(error)
         }
-        setPreguntas(preguntas)
-      } catch (error) {
-        console.log('No se ha podido ubicar el Ensayo')
-        console.log(error)
+        setReload(false)
       }
     }
     obtenerPreguntas()
-  }, [])
+  }, [reload])
   console.log(dataPreguntas)
+
   function submitHandler (e) {
     e.preventDefault()
     console.log(e.target.elements)
@@ -47,46 +55,61 @@ function App () {
       e.target.elements.P1.value
 
     ]
-    console.log(selectores.length)
     revisar(selectores)
   }
   function revisar (selectores) {
+    let correctas = 0
     for (let id = 0; id < selectores.length; id++) {
       if (selectores[id] === dataPreguntas[id].correcta.toString()) {
-        setCorrectas(dataCorrectas + 1)
+        correctas += 1
       }
     }
-    console.log(`Puntaje de ${dataCorrectas}`)
+    console.log(`Puntaje de ${correctas}`)
+    setCorrectas(correctas)
+    guardarEnsayo(correctas, dataPreguntas.length)
+    setShowAlert(true)
+    // redirect perfil
   }
-  function guardarbd () {
-    return true
+  const handleCloseAlert = () => {
+    setShowAlert(false)
+    setReload(true)
   }
+
+  async function guardarEnsayo (correctas, total) {
+    const docuRef = doc(firestore, 'Usuarios', user.uid)
+    const docSnapshot = await getDoc(docuRef)
+    let ensayos = []
+    if (Object.hasOwnProperty.call(docSnapshot.data(), 'ensayos')) {
+      ensayos = docSnapshot.data().ensayos
+    }
+    const nuevo = { correctas, total }
+    ensayos.push(nuevo)
+    await updateDoc(docuRef, { ensayos })
+  }
+
   return (
     <div className='container-center-horizontal-2'>
       <div className='login screen'>
         <div className='header-container'>
           <NavbarResponsive />
         </div>
+        <AlertModal
+          isOpen={showAlert}
+          title='Resultados'
+          message={`Correctas ${dataCorrectas}/${dataPreguntas.length}`}
+          onClose={handleCloseAlert}
+        />
         <form className='form2' onSubmit={submitHandler}>
-          <Pregunta
-            id='test'
-            title='Pregunta 1'
-            descripcion='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-            A='Elefante guerrero siquico ancestral'
-            B='Falso'
-            C='Shrek'
-            D='Si'
-          />
           {dataPreguntas.map((elemento, index) => (
             <Pregunta
               key={index}
               id={index}
-              title={dataPreguntas[index].enunciado}
-              descripcion={dataPreguntas[index].descripcion}
-              A={dataPreguntas[index].A}
-              B={dataPreguntas[index].B}
-              C={dataPreguntas[index].C}
-              D={dataPreguntas[index].D}
+              title={elemento.enunciado}
+              descripcion={elemento.descripcion}
+              A={elemento.A}
+              B={elemento.B}
+              C={elemento.C}
+              D={elemento.D}
             />
           ))}
           <div className='botones'>

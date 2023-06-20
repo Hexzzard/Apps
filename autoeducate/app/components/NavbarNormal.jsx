@@ -22,13 +22,13 @@ export function NavbarNormal () {
 
   useEffect(() => {
     const auth = getAuth()
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user.displayName)
       } else {
         setCurrentUser(null)
       }
+      console.log('cambio')
     })
 
     return () => {
