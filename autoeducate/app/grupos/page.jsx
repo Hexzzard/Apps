@@ -1,26 +1,17 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from 'react'
+import Link from 'next/link'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'app/test.css'
 import './grupos.css'
 
 import { Footer } from '../components/footer'
 import { NavbarResponsive } from '../components/NavBarResponsive'
+import { GrupoEstudio } from '../components/GrupoEstudio'
 
-function App () {
-  return (
-    <Principal
-      title='Bienvenido User' sectionHeadingProps={principalData.sectionHeadingProps} x11Props={principalData.x11Props} x12Props={principalData.x12Props}
-    />
-  )
-}
-
-export default App
-
-function Principal (props) {
-  const { x11Props, x12Props } = props
-
+export default function App () {
   useEffect(() => {
     const leftMov = () => {
       slider.scrollLeft -= scroll
@@ -57,17 +48,19 @@ function Principal (props) {
                 <img src='/assets/arrow_left.png' alt='Izquierda' className='arrow' id='left' />
                 <div className='container-slider'>
                   <div className='slider' id='slider'>
-                    <X1
-                      cover={x11Props.cover} projectTitle={x11Props.projectTitle} projectTags={x11Props.projectTags}
+                    <Link href={`/grupos/${1}`}>
+                      <GrupoEstudio
+                        imagen='/assets/grupo1.png' titulo='grupo de estudio 1' descripcion='asignatura Example 1'
+                      />
+                    </Link>
+                    <GrupoEstudio
+                      imagen='/assets/grupo2.png' titulo='grupo de estudio 2' descripcion='asignatura Example 2'
                     />
-                    <X1
-                      cover={x12Props.cover} projectTitle={x12Props.projectTitle} projectTags={x12Props.projectTags}
+                    <GrupoEstudio
+                      imagen='/assets/grupo1.png' titulo='grupo de estudio 3' descripcion='asignatura Example 3'
                     />
-                    <X1
-                      cover={x12Props.cover} projectTitle={x12Props.projectTitle} projectTags={x12Props.projectTags}
-                    />
-                    <X1
-                      cover={x12Props.cover} projectTitle={x12Props.projectTitle} projectTags={x12Props.projectTags}
+                    <GrupoEstudio
+                      imagen='/assets/grupo2.png' titulo='grupo de estudio 4' descripcion='asignatura Example 4'
                     />
                   </div>
                 </div>
@@ -80,40 +73,4 @@ function Principal (props) {
       </div>
     </div>
   )
-}
-
-function X1 (props) {
-  const { cover, projectTitle, projectTags } = props
-
-  return (
-    <article className='row-1-item'>
-      <img src={cover} alt='Cover' className='cover' />
-      <div className='project-details'>
-        <div className='project-title inter-semi-bold-eerie-black-24px'>
-          {projectTitle}
-        </div>
-        <div className='project-tags inter-normal-eerie-black-16px'>
-          {projectTags}
-        </div>
-      </div>
-    </article>
-  )
-}
-
-const x11data = {
-  cover: '/assets/grupo1.png',
-  projectTitle: 'grupo de estudio 1',
-  projectTags: 'asignatura Example 1'
-}
-
-const x12data = {
-  cover: '/assets/grupo2.png',
-  projectTitle: 'grupo de estudio 2',
-  projectTags: 'asignatura Example 2'
-}
-
-const principalData = {
-  x11Props: x11data,
-  x12Props: x12data,
-  left: '/assets/arrow_left.png'
 }

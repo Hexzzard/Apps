@@ -9,12 +9,14 @@ export function NavbarResponsive () {
 
   const isSmallScreen = WindowSize < 1000
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize(window.innerWidth)
-    }
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        setWindowSize(window.innerWidth)
+      }
+      window.addEventListener('resize', handleResize)
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
     }
   }, [])
   return (
