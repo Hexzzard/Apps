@@ -1,24 +1,27 @@
+'use client'
 import React, { useState, useEffect } from 'react'
 
 import { NavbarNormal } from './NavbarNormal'
 import { NavbarOffCanvas } from './NavbarOffCanvas'
 
 export function NavbarResponsive () {
-  // const first = typeof window !== 'undefined' ? window.innerWidth : 0
-  const [WindowSize, setWindowSize] = useState(1400)
+  const [WindowSize, setWindowSize] = useState()
+  const [isSmallScreen, setisSmallScreen] = useState()
 
-  const isSmallScreen = WindowSize < 1000
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const handleResize = () => {
         setWindowSize(window.innerWidth)
+        setisSmallScreen(WindowSize < 1000)
       }
       window.addEventListener('resize', handleResize)
+      handleResize()
       return () => {
         window.removeEventListener('resize', handleResize)
       }
     }
-  }, [])
+  }, [WindowSize])
+
   return (
     <div className='navbarRes'>
       {!isSmallScreen

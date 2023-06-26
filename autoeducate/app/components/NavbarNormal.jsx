@@ -9,6 +9,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 export function NavbarNormal () {
   const { user, logOut } = UserAuth()
+
   const cerrarSesion = async () => {
     try {
       await logOut()
