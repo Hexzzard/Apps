@@ -48,7 +48,7 @@ export function NavbarNormal () {
           </div>
           <HeaderMenuDefault route='/grupos'>Grupos de estudio</HeaderMenuDefault>
           <HeaderMenuDefault route='/ensayos'>Ensayos</HeaderMenuDefault>
-          <HeaderMenuDefault route='/foros'>Foros</HeaderMenuDefault>
+          <HeaderMenuDefault route='/grupos'>Foros</HeaderMenuDefault>
         </div>
       </div>
       {!user

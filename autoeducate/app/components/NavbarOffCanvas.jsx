@@ -99,7 +99,7 @@ export function NavbarOffCanvas () {
                 )}
             <HeaderMenuDefault route='/grupos'>Grupos de estudio</HeaderMenuDefault>
             <HeaderMenuDefault route='/ensayos'>Ensayos</HeaderMenuDefault>
-            <HeaderMenuDefault route='/foros'>Foros</HeaderMenuDefault>
+            <HeaderMenuDefault route='/grupos'>Foros</HeaderMenuDefault>
           </Offcanvas.Body>
         </Offcanvas>
       </div>
