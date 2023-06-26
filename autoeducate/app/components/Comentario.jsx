@@ -7,8 +7,7 @@ import { ReloadState } from '../context/ReloadContext'
 import React from 'react'
 
 export function Comentario (props) {
-  const { usuario, comentario, reply, id } = props
-  const foro = 'test'
+  const { usuario, comentario, reply, id, foro } = props
   const { user } = UserAuth()
   const db = doc(firestore, 'Comentarios', foro)
   const { reloadComponent } = ReloadState()

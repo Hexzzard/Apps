@@ -65,9 +65,23 @@
 }
 .cover{
   height: 285px;
-  min-width: 405px;
+  width: 405px;
   position: relative;
 }
+.cover2{
+  height: 60px;
+  min-width: 60px;
+  
+}
+.plus {
+  height: 285px;
+  width: 285px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
 .section-title{
   color: var(--eerie-black) ;
   font-family: var(--font-family-inter) ;

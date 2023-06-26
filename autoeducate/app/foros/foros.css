@@ -339,3 +339,6 @@ input[type="radio"]:checked + .radio-labelD .radio-imageD {
   border: none;
   border-radius: 5px;
 }
+.descripcion{
+  padding-bottom: 15px;
+}

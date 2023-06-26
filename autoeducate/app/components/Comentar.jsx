@@ -4,12 +4,11 @@ import { UserAuth } from '../context/AuthContext'
 import { ReloadState } from '../context/ReloadContext'
 import { AutoResizableTextarea } from './AutoTextArea'
 
-export function Comentar () {
-  // recibir foro id
-  const foro = 'test'
+export function Comentar (props) {
+  const { id } = props
   const { user } = UserAuth()
   const { reloadComponent } = ReloadState()
-  const db = doc(firestore, 'Comentarios', foro)
+  const db = doc(firestore, 'Comentarios', id)
   async function añadirComentario (usuario, comentario) {
     const documentoSnapshot = await getDoc(db)
     if (documentoSnapshot.exists()) {
