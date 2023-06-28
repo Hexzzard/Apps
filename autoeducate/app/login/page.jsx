@@ -32,8 +32,10 @@ function App () {
 
     try {
       signInWithEmailAndPassword(auth, email, password)
-      navigate('/')
-      window.location.reload()
+        .then(() => {
+          navigate('/')
+          window.location.reload()
+        })
     } catch (error) {
       console.log(error)
     }

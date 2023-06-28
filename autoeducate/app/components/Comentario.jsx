@@ -1,6 +1,4 @@
 import { Reply } from '../components/reply'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
-import { firestore } from '../api/firebase.config'
 import { UserAuth } from '../context/AuthContext'
 import { AutoResizableTextarea } from './AutoTextArea'
 import { ReloadState } from '../context/ReloadContext'
@@ -9,19 +7,28 @@ import React from 'react'
 export function Comentario (props) {
   const { usuario, comentario, reply, id, foro } = props
   const { user } = UserAuth()
-  const db = doc(firestore, 'Comentarios', foro)
   const { reloadComponent } = ReloadState()
 
   async function añadirReply (usuario, comentario) {
-    const documentoSnapshot = await getDoc(db)
-    const datosDocumento = documentoSnapshot.data().comentarios
-    const nuevoComentario = {
-      usuario,
-      comentario
+    try {
+      const data = new FormData()
+      data.set('id', id)
+      data.set('usuario', usuario)
+      data.set('comentario', comentario)
+      data.set('foro', foro)
+
+      const res = await fetch('/api/upload/reply', {
+        method: 'POST',
+        body: data
+      })
+      console.log(res)
+
+      if (res.ok) {
+        console.log('Respuesta añadida')
+      }
+    } catch (error) {
+      console.error('error al contactar con el backend: ', error)
     }
-    console.log(datosDocumento[id].reply)
-    datosDocumento[id].reply.push(nuevoComentario)
-    await updateDoc(db, { comentarios: datosDocumento })
     reloadComponent()
   }
 

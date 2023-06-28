@@ -129,9 +129,13 @@
     margin-top: 30px;
     font-size: 35px;
   }
+  .inter-extra-bold-black-72px{
+    margin-top: 30px;
+    font-size: 35px;
+  }
   .cover{
     height: 171px;
-    min-width: 243px;
+    width: 243px;
     position: relative;
   }
   .container-slider .slider {

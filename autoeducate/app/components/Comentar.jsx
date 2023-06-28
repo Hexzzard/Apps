@@ -1,5 +1,3 @@
-import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
-import { firestore } from '../api/firebase.config'
 import { UserAuth } from '../context/AuthContext'
 import { ReloadState } from '../context/ReloadContext'
 import { AutoResizableTextarea } from './AutoTextArea'
@@ -8,27 +6,24 @@ export function Comentar (props) {
   const { id } = props
   const { user } = UserAuth()
   const { reloadComponent } = ReloadState()
-  const db = doc(firestore, 'Comentarios', id)
   async function añadirComentario (usuario, comentario) {
-    const documentoSnapshot = await getDoc(db)
-    if (documentoSnapshot.exists()) {
-      const datosDocumento = documentoSnapshot.data().comentarios
-      const nuevoComentario = {
-        usuario,
-        comentario,
-        reply: []
+    try {
+      const data = new FormData()
+      data.set('id', id)
+      data.set('usuario', usuario)
+      data.set('comentario', comentario)
+
+      const res = await fetch('/api/upload/comentarios', {
+        method: 'POST',
+        body: data
+      })
+      console.log(res)
+
+      if (res.ok) {
+        console.log('Comentario añadido')
       }
-      datosDocumento.push(nuevoComentario)
-      await updateDoc(db, { comentarios: datosDocumento })
-    } else {
-      const nuevoDocumento = {
-        comentarios: [{
-          usuario,
-          comentario,
-          reply: []
-        }]
-      }
-      await setDoc(db, nuevoDocumento)
+    } catch (error) {
+      console.error('error al contactar con el backend: ', error)
     }
     reloadComponent()
   }

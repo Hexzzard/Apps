@@ -8,7 +8,7 @@ import { Footer } from '../../components/footer'
 import { NavbarResponsive } from '../../components/NavbarResponsive'
 import { Foro } from '../../components/Foro'
 
-function App ({ params }) {
+export default function App ({ params }) {
   const { id } = params
   return (
     <div className='container-center-horizontal-2'>
@@ -22,5 +22,3 @@ function App ({ params }) {
     </div>
   )
 }
-
-export default App

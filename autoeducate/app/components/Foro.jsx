@@ -1,5 +1,3 @@
-import { doc, getDoc } from 'firebase/firestore'
-import { firestore } from '../api/firebase.config'
 import { useState, useEffect } from 'react'
 import { Comentario } from './Comentario'
 import { ReloadState } from '../context/ReloadContext'
@@ -12,24 +10,36 @@ export function Foro (props) {
   const { reload, reloadDone } = ReloadState()
 
   useEffect(() => {
-    async function obtenerComentarios () {
+    async function ObtenerComentarios () {
       try {
         const { id } = props
         console.log(id)
-        const dbforo = doc(firestore, 'Foros', id)
-        const foroSnapshot = await getDoc(dbforo)
-        const datosforo = foroSnapshot.data()
-        setForo(datosforo)
+        const data = new FormData()
+        data.set('id', id)
+        await fetch('/api/get/comentarios', {
+          method: 'POST',
+          body: data
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            const success = data.success
+            const datosforo = data.datosforo
+            const datosComentarios = data.datosComentarios
 
-        const dbComentarios = doc(firestore, 'Comentarios', id)
-        const comentariosSnapshot = await getDoc(dbComentarios)
-        const datosComentarios = comentariosSnapshot.data().comentarios.slice().reverse()
-        setComentarios(datosComentarios)
+            if (success) {
+              setForo(datosforo)
+              setComentarios(datosComentarios)
+            } else {
+              console.log('Error en la respuesta del backend')
+            }
+          })
       } catch (error) {
-        console.error(error)
+        console.error('error al contactar con el backend: ', error)
       }
     }
-    obtenerComentarios()
+
+    ObtenerComentarios()
     reloadDone()
   }, [props, reload, reloadDone])
   const tamaño = comentarios.length - 1

@@ -11,25 +11,28 @@ import '../login/form.css'
 import { Footer } from '../components/footer'
 import { NavbarResponsive } from '../components/NavBarResponsive'
 import { GrupoEstudio } from '../components/GrupoEstudio'
-import { collection, getDocs, doc, setDoc } from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore'
 import { firestore } from '../api/firebase.config'
 import FormModal from '../components/FormModal'
 
 export default function App () {
   const [grupos, setGrupos] = useState([])
   const [isOpen, setIsOpen] = useState(false)
-  const [imagen, setImagen] = useState()
+  const [imagen, setImagen] = useState(null)
+  const [reload, setReload] = useState()
   useEffect(() => {
-    const leftMov = () => {
-      slider.scrollLeft -= scroll
-    }
-    const rightMov = () => {
-      slider.scrollLeft += scroll
-    }
     const slider = document.getElementById('slider')
     const right = document.getElementById('right')
     const left = document.getElementById('left')
-    const scroll = window.innerWidth > 1000 ? 445 : 280
+
+    const leftMov = () => {
+      const scroll = window.innerWidth > 500 ? 445 : 275
+      slider.scrollLeft -= scroll
+    }
+    const rightMov = () => {
+      const scroll = window.innerWidth > 500 ? 445 : 275
+      slider.scrollLeft += scroll
+    }
     left.addEventListener('click', leftMov)
     right.addEventListener('click', rightMov)
 
@@ -39,6 +42,7 @@ export default function App () {
     }
   }, [])
   useEffect(() => {
+    console.log('cargnado datos')
     async function obtenerForos () {
       try {
         const gruposSnapshot = await getDocs(collection(firestore, 'GruposEstudio'))
@@ -48,12 +52,14 @@ export default function App () {
           grupos.push(datosForo)
         })
         setGrupos(grupos)
+        console.log(grupos)
       } catch (error) {
         console.error(error)
       }
     }
     obtenerForos()
-  }, [])
+    setReload(false)
+  }, [reload])
 
   const handleOpenModal = () => {
     setIsOpen(true)
@@ -70,40 +76,28 @@ export default function App () {
     const descripcion = e.target.elements.descripcion.value
     console.log(imagen)
     registrarGrupo(nombre, asignatura, descripcion)
+    setReload(true)
+    console.log(reload)
     handleCloseModal()
   }
 
   async function registrarGrupo (nombre, asignatura, descripcion) {
-    const id = nombre.replace(/\s/g, '')
-    const docuRef = doc(firestore, `GruposEstudio/${id}`)
-    let ImagenRef = null
-
-    if (imagen != null) {
-      ImagenRef = `/store/${imagen.name}`
-    }
     try {
-      const ForoRef = doc(firestore, `Foros/${id}`)
-      await setDoc(docuRef, { id, nombre, asignatura, imagen: ImagenRef, Foro: ForoRef })
-      await setDoc(ForoRef, { id, titulo: nombre, descripcion })
-      console.log('Grupo de estudio creado')
-      try {
-        const data = new FormData()
-        data.set('file', imagen)
+      const id = nombre.replace(/\s/g, '')
+      const data = new FormData()
+      data.set('id', id)
+      data.set('file', imagen)
+      data.set('nombre', nombre)
+      data.set('asignatura', asignatura)
+      data.set('descripcion', descripcion)
 
-        const res = await fetch('/api/upload', {
-          method: 'POST',
-          body: data
-        })
-        console.log(res)
-
-        if (res.ok) {
-          console.log('File uploaded successfully')
-        }
-      } catch (error) {
-        console.error(error)
-      }
+      await fetch('/api/upload', {
+        method: 'POST',
+        body: data
+      })
+      setReload(true)
     } catch (error) {
-      console.error('Error al crear el grupo de estudio: ', error)
+      console.error('error al contactar con el backend: ', error)
     }
   }
 

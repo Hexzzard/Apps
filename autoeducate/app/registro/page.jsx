@@ -9,8 +9,7 @@ import { Footer } from '../components/footer'
 import { NavbarResponsive } from '../components/NavbarResponsive'
 
 import { updateProfile, createUserWithEmailAndPassword } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
-import { auth, firestore } from '../api/firebase.config'
+import { auth } from '../api/firebase.config'
 
 function App () {
   async function registrarUsuario (email, password, nombre) {
@@ -25,9 +24,6 @@ function App () {
     await updateProfile(user, {
       displayName: nombre
     })
-    const docuRef = doc(firestore, `Usuarios/${infoUsuario.user.uid}`)
-    await setDoc(docuRef, { email, nombre, id: infoUsuario.user.uid })
-    console.log(docuRef)
     window.location.href = '/'
   }
 
